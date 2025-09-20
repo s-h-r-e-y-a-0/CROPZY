@@ -32,8 +32,10 @@ export default function Layout() {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="verification" />
       <Stack.Screen name="languageSelection" />
+       <Stack.Screen name="englishVerification" />
+      <Stack.Screen name="hindiVerification" />
+      {/* <Stack.Screen name="verification" /> */}
       <Stack.Screen name="identifyPlant" />
     </Stack>
   );
