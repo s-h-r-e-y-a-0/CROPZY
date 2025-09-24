@@ -28,15 +28,15 @@ import { Stack } from "expo-router";
 export default function Layout() {
   return (
     <Stack
-      initialRouteName="index"    // Landing screen remains index.js
+      initialRouteName="index"  
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="index" />
       <Stack.Screen name="languageSelection" />
        <Stack.Screen name="englishVerification" />
       <Stack.Screen name="hindiVerification" />
-     
       <Stack.Screen name="identifyPlant" />
+      <Stack.Screen name="hindiidentifyPlant" />
     </Stack>
   );
 }

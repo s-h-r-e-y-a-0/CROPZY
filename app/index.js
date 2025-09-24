@@ -1,89 +1,38 @@
-// import React from 'react';
-// import { View, Text, Image, ImageBackground, StyleSheet, Dimensions } from 'react-native';
-// import { LinearGradient } from 'expo-linear-gradient';
 
-// const { width, height } = Dimensions.get('window');
+// import { LinearGradient } from "expo-linear-gradient";
+// import { useRouter } from "expo-router";
+// import { useEffect } from "react";
+// import { Dimensions, Image, ImageBackground, StyleSheet, View } from "react-native";
 
-// const LandingScreen = () => {
-//   return (
-//     <LinearGradient
-//       colors={['#d1f4e0', '#ffffff']} 
-//       style={styles.container}
-//     >
-//       {/* Logo + Tagline */}
-//       <View style={styles.logoContainer}>
-//         <Image
-//           source={require('../assets/images/cropzylogo.png')}
-//           style={styles.logo}
-//           resizeMode="contain"
-//         />
-        
-//       </View>
+// const { width, height } = Dimensions.get("window");
 
-//       {/* Bottom Illustration */}
-//       <Image
-//         source={require('../assets/images/farmer.jpg')}
-//         style={styles.bottomImage}
-//         resizeMode="cover"
-//       />
-//     </LinearGradient>
-//   );
-// };
+// export default function LandingScreen() {
+//   const router = useRouter();
 
-// export default LandingScreen;
+//   useEffect(() => {
+//     const timer = setTimeout(() => {
+//       router.replace("/languageSelection"); // Navigate after 3s
+//     }, 3000);
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'space-between',
-//     alignItems: 'center',
-//   },
-//   logoContainer: {
-//     marginTop: height * 0.15,
-//     alignItems: 'center',
-//   },
-//   logo: {
-//     width:250,
-//     height:250,
-//   },
-//   tagline: {
-//     fontSize: 18,
-//     color: '#444',
-//     fontWeight: '600',
-//     marginTop: 12,
-//   },
-//   bottomImage: {
-//     width: width,
-//     height: height * 0.45,
-//   },
-// });
+//     return () => clearTimeout(timer);
+//   }, [router]);
 
-
-// import React from 'react';
-// import { View, Image, ImageBackground, StyleSheet, Dimensions } from 'react-native';
-// import { LinearGradient } from 'expo-linear-gradient';
-
-// const { width, height } = Dimensions.get('window');
-
-// const LandingScreen = () => {
 //   return (
 //     <View style={styles.container}>
-//       {/* Bottom farmer image */}
 //       <ImageBackground
-//         source={require('../assets/images/farmer.jpg')}
+//         source={require("../assets/images/farmer.png")}
 //         style={styles.imageBackground}
 //         resizeMode="cover"
 //       >
-//         {/* Top gradient to blend white into image */}
 //         <LinearGradient
-//           colors={['#ffffff', 'transparent']}
+//           colors={["#ffffff", "transparent"]}
 //           style={styles.gradientOverlay}
 //         />
 
-//         {/* Logo in middle */}
+//         {/* Centered logo */}
 //         <View style={styles.logoContainer}>
 //           <Image
-//             source={require('../assets/images/cropzylogo.png')}
+//             source={require("../assets/images/cropzylogo.png")}
 //             style={styles.logo}
 //             resizeMode="contain"
 //           />
@@ -91,57 +40,46 @@
 //       </ImageBackground>
 //     </View>
 //   );
-// };
-
-// export default LandingScreen;
+// }
 
 // const styles = StyleSheet.create({
 //   container: {
 //     flex: 1,
-//     backgroundColor: '#ffffff', // fallback color
+//     backgroundColor: "#ffffff",
 //   },
 //   imageBackground: {
 //     flex: 1,
-//     width: width,
-//     height: height,
-//     justifyContent: 'center',
-//     alignItems: 'center',
+//     width: "100%",
+//     height: "100%",
+//     justifyContent: "center",
+//     alignItems: "center",
 //   },
 //   gradientOverlay: {
-//     position: 'absolute',
+//     position: "absolute",
 //     top: 0,
-//     width: width,
-//     height: height * 0.1, // adjust how much white blends into the image
+//     width: "100%",
+//     height: "15%", // covers 15% of screen height
 //   },
 //   logoContainer: {
-//     position: 'absolute',
-//     top: 0.10, // fixed pixels from top (works better than tiny percentages)
+//     position: "absolute",
+//     top: height * 0.1, // 10% from top dynamically
 //     left: 0,
 //     right: 0,
-//     alignItems: 'center', // center horizontally
+//     alignItems: "center",
 //   },
-
 //   logo: {
-//     width: 350,
-//     height:250,
+//     width: width * 0.7, // 70% of screen width
+//     height: height * 0.25, // 25% of screen height
 //   },
 // });
 
 
 
 
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////
-
-import React, { useEffect } from "react";
-import { View, Image, ImageBackground, StyleSheet, Dimensions } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+import { useEffect } from "react";
+import { Dimensions, Image, StyleSheet, View } from "react-native";
 
 const { width, height } = Dimensions.get("window");
 
@@ -150,7 +88,7 @@ export default function LandingScreen() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.replace("/verification"); // Navigate to verification after 3s
+      router.replace("/languageSelection"); // Navigate after 3s
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -158,31 +96,60 @@ export default function LandingScreen() {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("../assets/images/farmer.jpg")}
-        style={styles.imageBackground}
-        resizeMode="cover"
-      >
-        <LinearGradient colors={["#ffffff", "transparent"]} style={styles.gradientOverlay} />
-        <View style={styles.logoContainer}>
-          <Image
-            source={require("../assets/images/cropzylogo.png")}
-            style={styles.logo}
-            resizeMode="contain"
-          />
-        </View>
-      </ImageBackground>
+      {/* Logo Section */}
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../assets/images/cropzylogo.png")}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
+
+      {/* Bottom Image Section */}
+      <View style={styles.bottomImageContainer}>
+        <Image
+          source={require("../assets/images/farmer.png")}
+          style={styles.bottomImage}
+          resizeMode="contain"
+        />
+        <LinearGradient
+          colors={["transparent", "#ffffff"]}
+          style={styles.gradientOverlay}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#ffffff" },
-  imageBackground: { flex: 1, width, height, justifyContent: "center", alignItems: "center" },
-  gradientOverlay: { position: "absolute", top: 0, width, height: height * 0.1 },
-  logoContainer: { position: "absolute", top: 50, left: 0, right: 0, alignItems: "center" },
-  logo: { width: 350, height: 250 },
+  container: {
+    flex: 1,
+    backgroundColor: "#ffffff",
+    justifyContent: "space-between",
+  },
+  logoContainer: {
+    flex: 3,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logo: {
+    width: width * 0.9, // adjustable width
+    height: height * 0.9, // adjustable height
+  },
+  bottomImageContainer: {
+    width: "100%",
+    height: height * 0.50, // bottom 45% of screen
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  bottomImage: {
+    width: "110%",
+    height: "110%",
+  },
+  gradientOverlay: {
+    position: "absolute",
+    top: 0,
+    width: "100%",
+    height: 40, // fade effect at top of bottom image
+  },
 });
-
-
-
