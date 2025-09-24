@@ -1,14 +1,27 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Dimensions,
+  SafeAreaView,
+  StatusBar,
+} from "react-native";
 import { useRouter } from "expo-router";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+
+const { width, height } = Dimensions.get("window");
 
 export default function IdentifyPlant() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      {/* Top bar with logo */}
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="#50C878" barStyle="light-content" />
+
+      {/* Top Green Bar with Logo */}
       <View style={styles.topBar}>
         <Image
           source={require("../assets/images/cropzylogo.png")}
@@ -17,79 +30,112 @@ export default function IdentifyPlant() {
         />
       </View>
 
-      {/* Scanner graphic */}
+      {/* Scanner Section */}
       <View style={styles.scanner}>
-        <Ionicons name="scan-outline" size={200} color="#22c55e" />
+        <Ionicons
+          name="scan-outline"
+          size={width * 0.55}
+          color="#50C878"
+        />
       </View>
 
-      {/* Instruction text */}
-      <Text style={styles.instruction}>
-        Align plant and tap to scan
-      </Text>
+      {/* Instruction */}
+      <Text style={styles.instruction}>Align plant and tap to scan</Text>
 
-      {/* Identify button */}
+      {/* Identify Button */}
       <TouchableOpacity style={styles.identifyBtn}>
-        <Text style={styles.identifyText}>Identify plant</Text>
+        <Text style={styles.identifyText}>Identify Plant</Text>
       </TouchableOpacity>
 
-      {/* Bottom toolbar */}
+      {/* Bottom Toolbar */}
       <View style={styles.bottomBar}>
         <TouchableOpacity>
-          <MaterialIcons name="photo-library" size={30} color="black" />
+          <MaterialIcons
+            name="photo-library"
+            size={width * 0.08}
+            color="#50C878"
+          />
         </TouchableOpacity>
-        <TouchableOpacity style={{ marginHorizontal: 50 }}>
-          <Ionicons name="camera-outline" size={32} color="black" />
+
+        <TouchableOpacity style={styles.cameraButton}>
+          <Ionicons
+            name="camera-outline"
+            size={width * 0.1}
+            color="white"
+          />
         </TouchableOpacity>
+
         <TouchableOpacity>
-          <Ionicons name="refresh" size={30} color="black" />
+          <Ionicons
+            name="refresh"
+            size={width * 0.08}
+            color="#50C878"
+          />
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingVertical: 40,
+    backgroundColor: "#ffffff",
   },
   topBar: {
     width: "100%",
-    alignItems: "center",
-    paddingTop: 20,
+    height: height * 0.09,
+    backgroundColor: "#50C878",
+    justifyContent: "center",
+    paddingLeft: width * 0.03,
   },
   logo: {
-    width: 90,
-    height: 40,
+    width: width * 0.3,
+    height: height * 0.12,
   },
   scanner: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: height * 0.03,
   },
   instruction: {
-    fontSize: 16,
-    marginBottom: 10,
+    fontSize: width * 0.045,
+    textAlign: "center",
     color: "#333",
+    marginBottom: height * 0.02,
   },
   identifyBtn: {
-    backgroundColor: "#22c55e",
-    paddingVertical: 12,
-    paddingHorizontal: 35,
-    borderRadius: 8,
-    marginBottom: 30,
+    backgroundColor: "#50C878",
+    paddingVertical: height * 0.018,
+    paddingHorizontal: width * 0.2,
+    borderRadius: 25,
+    alignSelf: "center",
+    marginBottom: height * 0.03,
   },
   identifyText: {
     color: "white",
-    fontSize: 18,
+    fontSize: width * 0.05,
     fontWeight: "600",
   },
   bottomBar: {
     flexDirection: "row",
+    justifyContent: "space-around",
     alignItems: "center",
-    marginBottom: 20,
+    paddingVertical: height * 0.025,
+    paddingHorizontal: width * 0.15,
+  },
+  cameraButton: {
+    width: width * 0.2,
+    height: width * 0.2,
+    borderRadius: width * 0.1,
+    backgroundColor: "#50C878",
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
 });

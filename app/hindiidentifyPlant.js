@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -7,39 +7,38 @@ import {
   SafeAreaView,
   Image,
   StatusBar,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import ImageIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+  Dimensions,
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import ImageIcon from "react-native-vector-icons/MaterialCommunityIcons";
+
+const { width, height } = Dimensions.get("window");
 
 const PlantIdentificationScreen = () => {
   const handleImagePick = () => {
-    // Handle image picker functionality
-    console.log('Image picker pressed');
+    console.log("Image picker pressed");
   };
 
   const handleCamera = () => {
-    // Handle camera functionality
-    console.log('Camera pressed');
+    console.log("Camera pressed");
   };
 
   const handleRefresh = () => {
-    // Handle refresh functionality
-    console.log('Refresh pressed');
+    console.log("Refresh pressed");
   };
 
   const handleScanPlant = () => {
-    // Handle plant scanning functionality
-    console.log('Scan plant pressed');
+    console.log("Scan plant pressed");
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#50C878" barStyle="light-content" />
-      
-      {/* Header */}
-      <View style={styles.header}>
-        <Image 
-          source={require('../assets/images/cropzylogo.png')} 
+
+      {/* Top Green Bar with Left-Aligned Logo */}
+      <View style={styles.topBar}>
+        <Image
+          source={require("../assets/images/cropzylogo.png")}
           style={styles.logo}
           resizeMode="contain"
         />
@@ -51,7 +50,7 @@ const PlantIdentificationScreen = () => {
         <View style={styles.cameraFrame}>
           <View style={[styles.frameCorner, styles.topLeft]} />
           <View style={[styles.frameCorner, styles.topRight]} />
-          
+
           {/* Plant Icon in Center */}
           <View style={styles.plantIconContainer}>
             <View style={styles.plantIcon}>
@@ -60,14 +59,14 @@ const PlantIdentificationScreen = () => {
               <View style={styles.rightLeaf} />
             </View>
           </View>
-          
+
           <View style={[styles.frameCorner, styles.bottomLeft]} />
           <View style={[styles.frameCorner, styles.bottomRight]} />
         </View>
 
         {/* Instructions Text */}
         <Text style={styles.instructionText}>
-          पौधे को कैमरा के और{'\n'}फोटो खींचे के लिए टैप करे
+          पौधे को कैमरा के और{"\n"}फोटो खींचे के लिए टैप करे
         </Text>
 
         {/* Scan Button */}
@@ -79,17 +78,17 @@ const PlantIdentificationScreen = () => {
       {/* Bottom Action Buttons */}
       <View style={styles.bottomActions}>
         <TouchableOpacity style={styles.actionButton} onPress={handleImagePick}>
-          <ImageIcon name="image-outline" size={30} color="#50C878" />
+          <ImageIcon name="image-outline" size={width * 0.08} color="#50C878" />
         </TouchableOpacity>
-        
+
         <TouchableOpacity style={styles.cameraButton} onPress={handleCamera}>
           <View style={styles.cameraButtonInner}>
-            <Icon name="camera-alt" size={35} color="white" />
+            <Icon name="camera-alt" size={width * 0.1} color="white" />
           </View>
         </TouchableOpacity>
-        
+
         <TouchableOpacity style={styles.actionButton} onPress={handleRefresh}>
-          <Icon name="refresh" size={30} color="#50C878" />
+          <Icon name="refresh" size={width * 0.08} color="#50C878" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -99,37 +98,38 @@ const PlantIdentificationScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
-  header: {
-    backgroundColor: '#50C878',
-    height: 60,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
+  topBar: {
+    width: "100%",
+    height: height * 0.09,
+    backgroundColor: "#50C878",
+    justifyContent: "center",
+    paddingLeft: width * 0.03,
   },
   logo: {
-    height: 40,
-    width: 120,
+    width: width * 0.3,
+    height: height * 0.12,
   },
   mainContent: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 40,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: width * 0.1,
   },
   cameraFrame: {
-    width: 250,
-    height: 250,
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 40,
+    width: width * 0.65,
+    height: width * 0.65,
+    position: "relative",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: height * 0.05,
   },
   frameCorner: {
-    position: 'absolute',
-    width: 30,
-    height: 30,
-    borderColor: '#50C878',
+    position: "absolute",
+    width: width * 0.1,
+    height: width * 0.1,
+    borderColor: "#50C878",
     borderWidth: 3,
   },
   topLeft: {
@@ -157,98 +157,95 @@ const styles = StyleSheet.create({
     borderLeftWidth: 0,
   },
   plantIconContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   plantIcon: {
-    width: 80,
-    height: 80,
-    position: 'relative',
+    width: width * 0.25,
+    height: width * 0.25,
+    position: "relative",
   },
   stem: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    left: '50%',
+    left: "50%",
     marginLeft: -2,
     width: 4,
-    height: 30,
-    backgroundColor: '#8B4513',
+    height: width * 0.1,
+    backgroundColor: "#8B4513",
     borderRadius: 2,
   },
   leftLeaf: {
-    position: 'absolute',
-    top: 10,
-    left: 15,
-    width: 25,
-    height: 35,
-    backgroundColor: '#50C878',
+    position: "absolute",
+    top: width * 0.04,
+    left: width * 0.07,
+    width: width * 0.08,
+    height: width * 0.12,
+    backgroundColor: "#50C878",
     borderRadius: 15,
-    transform: [{ rotate: '-15deg' }],
+    transform: [{ rotate: "-15deg" }],
   },
   rightLeaf: {
-    position: 'absolute',
-    top: 5,
-    right: 15,
-    width: 30,
-    height: 40,
-    backgroundColor: '#50C878',
+    position: "absolute",
+    top: width * 0.02,
+    right: width * 0.07,
+    width: width * 0.1,
+    height: width * 0.14,
+    backgroundColor: "#50C878",
     borderRadius: 18,
-    transform: [{ rotate: '20deg' }],
+    transform: [{ rotate: "20deg" }],
   },
   instructionText: {
-    fontSize: 16,
-    color: '#666',
-    textAlign: 'center',
+    fontSize: width * 0.045,
+    color: "#666",
+    textAlign: "center",
     lineHeight: 24,
-    marginBottom: 30,
+    marginBottom: height * 0.04,
   },
   scanButton: {
-    backgroundColor: '#50C878',
-    paddingHorizontal: 30,
-    paddingVertical: 12,
+    backgroundColor: "#50C878",
+    paddingHorizontal: width * 0.08,
+    paddingVertical: height * 0.015,
     borderRadius: 25,
   },
   scanButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: '500',
+    color: "white",
+    fontSize: width * 0.045,
+    fontWeight: "600",
   },
   bottomActions: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    paddingVertical: 30,
-    paddingHorizontal: 60,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingVertical: height * 0.03,
+    paddingHorizontal: width * 0.15,
   },
   actionButton: {
-    width: 50,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: width * 0.12,
+    height: width * 0.12,
+    justifyContent: "center",
+    alignItems: "center",
   },
   cameraButton: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    backgroundColor: '#50C878',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: width * 0.2,
+    height: width * 0.2,
+    borderRadius: width * 0.1,
+    backgroundColor: "#50C878",
+    justifyContent: "center",
+    alignItems: "center",
     elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
   },
   cameraButtonInner: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: '#50C878',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: width * 0.17,
+    height: width * 0.17,
+    borderRadius: width * 0.085,
+    backgroundColor: "#50C878",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
